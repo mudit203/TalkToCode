@@ -12,7 +12,7 @@ const teamMembers = [
     bio: "Passionate about creating intuitive UI with React and Tailwind CSS. Loves clean code and coffee."
   },
   {
-    profilePhoto: "https://example.com/images/jane.jpg",
+    profilePhoto: "https://i.ibb.co/yFYBRHLq/d2d37e16-4c95-4905-ac9e-4e2ae77c2ddc.png",
     name: "Mudit Sharma",
     designation: "Tech Lead",
     bio: "Experienced in building scalable APIs with Node.js and MongoDB. Advocate for open-source and testing."
@@ -255,7 +255,7 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
     <div className="aspect-video bg-slate-900">
       <iframe
         className="w-full h-full"
-        src="https://www.youtube.com/embed/M7i5YU08m9I"
+        // src="https://www.youtube.com/embed/M7i5YU08m9I"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
