@@ -255,7 +255,7 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
     <div className="aspect-video bg-slate-900">
       <iframe
         className="w-full h-full"
-        // src="https://www.youtube.com/embed/M7i5YU08m9I"
+        src="https://youtu.be/4K2Q-OYsmUk"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
