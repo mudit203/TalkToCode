@@ -6,13 +6,13 @@ import { motion } from 'framer-motion';
 
 const teamMembers = [
   {
-    profilePhoto: "https://i.ibb.co/yFYBRHLq/d2d37e16-4c95-4905-ac9e-4e2ae77c2ddc.png",
+    profilePhoto: "https://iili.io/3lekjJs.md.jpg",
     name: "Vinit Kumar Arora",
     designation: "Tech Lead",
     bio: "Passionate about creating intuitive UI with React and Tailwind CSS. Loves clean code and coffee."
   },
   {
-    profilePhoto: "https://i.ibb.co/yFYBRHLq/d2d37e16-4c95-4905-ac9e-4e2ae77c2ddc.png",
+    profilePhoto: "https://iili.io/3lejzep.md.jpg",
     name: "Mudit Sharma",
     designation: "Tech Lead",
     bio: "Experienced in building scalable APIs with Node.js and MongoDB. Advocate for open-source and testing."
