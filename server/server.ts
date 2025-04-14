@@ -1,11 +1,12 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { readFile, writeFile, access } from 'fs/promises';
 import { constants } from 'fs';
-import path from 'path';
+import path, { dirname } from 'path';
+import { readdir } from 'fs/promises'; // Updated import for readdir
 
 const app = express();
-const port = process.env.PORT || 3001; // Different from React's default port
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -21,92 +22,86 @@ async function fileExists(filePath: string): Promise<boolean> {
 }
 
 // Endpoint to fetch file contents
-app.get('/api/file', async (req, res) => {
+app.get('/api/file', async (req: Request, res: Response):Promise<void> => {
     try {
         const filePath = req.query.path as string;
-        
-        console.log('Attempting to read file at:', filePath);
-        console.log('File path type:', typeof filePath);
-        
+
         if (!filePath) {
-            console.log('No file path provided');
-            return res.status(400).json({ 
+            res.status(400).json({
                 error: 'File path is required',
                 details: 'Please provide a valid file path'
             });
+            return;
         }
 
-        // Check if file exists
         const exists = await fileExists(filePath);
-        console.log('File exists?', exists);
-        
+
         if (!exists) {
-            console.log('File not found at path:', filePath);
-            // Try to list parent directory if possible
             try {
-                const parentDir = path.dirname(filePath);
+                const parentDir = dirname(filePath);
                 const dirExists = await fileExists(parentDir);
-                console.log('Parent directory exists?', dirExists);
                 if (dirExists) {
-                    const { readdir } = require('fs/promises');
                     const files = await readdir(parentDir);
                     console.log('Files in parent directory:', files);
                 }
             } catch (err) {
                 console.log('Could not read parent directory:', err);
             }
-            
-            return res.status(404).json({ 
+
+             res.status(404).json({
                 error: 'File not found',
                 details: `The file at path "${filePath}" does not exist`
             });
+            return;
         }
 
-        // Read the file contents
         const content = await readFile(filePath, 'utf-8');
         res.json({ content });
     } catch (error) {
         console.error('Error reading file:', error);
-        res.status(500).json({ 
+        res.status(500).json({
             error: 'Failed to read file',
             details: error instanceof Error ? error.message : 'Unknown error'
         });
+        return;
     }
 });
 
 // Endpoint to modify file contents
-app.post('/api/file', async (req, res) => {
+app.post('/api/file', async (req: Request, res: Response):Promise<void>  => {
     try {
         const { filePath, content } = req.body;
-        
+
         if (!filePath || content === undefined) {
-            return res.status(400).json({ 
+             res.status(400).json({
                 error: 'Invalid request',
                 details: 'Both file path and content are required'
             });
+            return;
         }
 
-        // Check if file exists before trying to modify
         const exists = await fileExists(filePath);
         if (!exists) {
-            return res.status(404).json({ 
+             res.status(404).json({
                 error: 'File not found',
                 details: `The file at path "${filePath}" does not exist`
             });
+            return;
         }
 
-        // Write the modified content to the file
         await writeFile(filePath, content, 'utf-8');
-        res.json({ 
+        res.json({
             success: true,
             message: 'File updated successfully'
         });
+        return;
     } catch (error) {
         console.error('Error writing file:', error);
-        res.status(500).json({ 
+        res.status(500).json({
             error: 'Failed to write file',
             details: error instanceof Error ? error.message : 'Unknown error'
         });
+        return;
     }
 });
 
