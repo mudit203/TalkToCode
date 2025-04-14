@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const promises_1 = require("fs/promises");
 const app = (0, express_1.default)();
-const port = 3001; // Different from React's default port
+const port = process.env.PORT || 3001;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 // Endpoint to fetch file contents

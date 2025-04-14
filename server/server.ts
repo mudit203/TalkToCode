@@ -5,7 +5,7 @@ import { constants } from 'fs';
 import path from 'path';
 
 const app = express();
-const port = 3001; // Different from React's default port
+const port = process.env.PORT || 3001; // Different from React's default port
 
 app.use(cors());
 app.use(express.json());
