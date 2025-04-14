@@ -1,6 +1,35 @@
 import React from 'react';
 import { Brain, Zap, GitBranch, BarChart, Check, Play, Code, Mic, Github, Twitter} from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { motion } from 'framer-motion';
+
+
+const teamMembers = [
+  {
+    profilePhoto: "https://i.ibb.co/yFYBRHLq/d2d37e16-4c95-4905-ac9e-4e2ae77c2ddc.png",
+    name: "Vinit Kumar Arora",
+    designation: "Tech Lead",
+    bio: "Passionate about creating intuitive UI with React and Tailwind CSS. Loves clean code and coffee."
+  },
+  {
+    profilePhoto: "https://example.com/images/jane.jpg",
+    name: "Mudit Sharma",
+    designation: "Tech Lead",
+    bio: "Experienced in building scalable APIs with Node.js and MongoDB. Advocate for open-source and testing."
+  },
+  {
+    profilePhoto: "https://i.ibb.co/Tq147bBQ/Whats-App-Image-2025-04-14-at-15-46-41-5049279a.jpg",
+    name: "Aryan",
+    designation: "Tech Lead",
+    bio: "Crafts elegant user experiences with a strong focus on accessibility and responsive design."
+  },
+  {
+    profilePhoto: "https://i.ibb.co/DgtpJnp0/IMG-20241001-183854.jpg",
+    name: "Samiksha vijayvargiya",
+    designation: "Tech Lead",
+    bio: "Skilled at coordinating cross-functional teams and delivering projects on time. Agile and Scrum certified."
+  }
+];
 
 // Define the props interface
 interface HomepageProps {
@@ -11,10 +40,10 @@ interface HomepageProps {
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
   return (
     <div className="bg-gray-900 p-6 rounded-lg">
-      <div className="bg-blue-900 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+      <div className="bg-blue-500 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
         {icon}
       </div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <h3 className="text-xl font-bold mb-2 text-white">{title}</h3>
       <p className="text-gray-400">{description}</p>
     </div>
   );
@@ -97,73 +126,131 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-400 via-purple-300 to-pink-300 text-indigo-950">
       {/* Navbar */}
 {/* Navbar */}
 <nav className="flex justify-between items-center py-4 px-8 border-b border-gray-800">
   <div className="flex items-center gap-2">
-    <img className="w-20 object-contain" src="./VoxIDE_Logo.png" alt="VoxIDE Logo" />
-    <a href="/" className="text-2xl font-bold text-purple-400">VoxIDE</a>
+    <img className="w-20 object-contain" src="./Talk.png" alt="VoxIDE Logo" />
+    <a href="/" className="text-2xl font-bold text-black">TalkToCode</a>
   </div>
   <div className="flex items-center space-x-6">
-    <a href="#features" className="text-gray-300 hover:text-white transition">Features</a>
-    <a href="#docs" className="text-gray-300 hover:text-white transition">Meet</a>
-    <a
-      href="#try"
+    <a href="#features" className="text-black hover:text-white transition">Features</a>
+    <a href="#docs" className="text-black hover:text-white transition">Meet</a>
+    {/* <button
+      onClick={TryforFree}
       className="ml-4 px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition"
     >
       Try for free
-    </a>
+    </button> */}
+    <button
+                onClick={onGetStarted}
+                className="px-6 py-3 bg-blue-600 text-white text-center rounded-md hover:bg-blue-500 transition flex items-center justify-center"
+              >
+                Try for Free <span className="ml-2">→</span>
+              </button>
   </div>
 </nav>
 
 
 
       {/* Hero Section */}
-      <div className="flex items-center justify-between py-20 px-8 lg:px-16">
-        <div className="flex w-full pr-0 lg:pr-12">
-          <div className='w-1/2'>
-            <h1 className="flex justify-center text-5xl lg:text-6xl font-bold text-purple-400 mb-6">VoxIDE</h1>
-            <h6 className='flex justify-center text-l text-purple-300'>'Code with your voice. Build hands-free. Welcome to VoxIDE.'</h6>
-            <p className="text-xl mb-8">
-              Effortlessly edit code using your voice with advanced audio commands.
-              No need to type—just open a file and start speaking your instructions.
-              Code faster, smarter, and hands-free with voice-powered development.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={onGetStarted}
-                className="px-6 py-3 bg-blue-600 text-white text-center rounded-md hover:bg-blue-500 transition flex items-center justify-center"
-              >
-                Get Started <span className="ml-2">→</span>
-              </button>
-              <a href="#how" className="px-6 py-3 border border-gray-700 text-white text-center rounded-md hover:border-gray-500 transition">
-                See how it works
-              </a>
-            </div>
-          </div>
-          <div className='w-1/2'>
-          <DotLottieReact
-            className='w-full h-auto'
-            src="https://lottie.host/e5317963-0d06-4856-b34a-2bde5a0a3b5e/Yrl3W6vsrQ.lottie"
-            loop
-            autoplay
-          />
-          </div>
-        </div>
-        <div className="hidden lg:block w-1/2">
-          <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
-            <img
-              src="/api/placeholder/600/400"
-              alt="Code editor showing colorful syntax highlighting"
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
-      </div>
+<div className="flex items-center justify-between py-20 px-8 lg:px-16">
+<div className="flex w-full pr-0 lg:pr-12">
+  {/* Animated Text Content */}
+  <motion.div
+    className="w-1/2"
+    initial={{ x: -200, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+  >
+    <motion.h1
+      className="flex justify-center text-5xl lg:text-6xl font-bold text-black mb-6"
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.3, duration: 0.6 }}
+    >
+      TalkToCode
+    </motion.h1>
+
+    <motion.h6
+      className="flex justify-center text-l text-blue-900 font-bold"
+      initial={{ y: -10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.5, duration: 0.5 }}
+    >
+      'Code with your voice. Build hands-free. Welcome to TalkToCode.'
+    </motion.h6>
+
+    <motion.p
+      className="text-xl mb-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.7, duration: 0.6 }}
+    >
+      Effortlessly edit code using your voice with advanced audio commands.
+      No need to type—just open a file and start speaking your instructions.
+      Code faster, smarter, and hands-free with voice-powered development.
+    </motion.p>
+
+    <motion.div
+      className="flex flex-col sm:flex-row gap-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.9, duration: 0.5 }}
+    >
+      <motion.button
+        onClick={onGetStarted}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="px-6 py-3 bg-blue-600 text-white text-center rounded-md hover:bg-blue-500 transition flex items-center justify-center"
+      >
+        Get Started <span className="ml-2">→</span>
+      </motion.button>
+
+      <motion.a
+        href="#how"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="px-6 py-3 border border-gray-700 text-white text-center rounded-md hover:border-gray-500 transition hover:bg-black"
+      >
+        See how it works
+      </motion.a>
+    </motion.div>
+  </motion.div>
+
+  {/* Animated Lottie Element */}
+  <motion.div
+    className="w-1/2"
+    initial={{ x: 200, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ type: 'spring', stiffness: 50, damping: 20, delay: 0.5 }}
+  >
+    <DotLottieReact
+      className="w-full h-auto"
+      src="https://lottie.host/e5317963-0d06-4856-b34a-2bde5a0a3b5e/Yrl3W6vsrQ.lottie"
+      loop
+      autoplay
+    />
+  </motion.div>
+</div>
+
+
+  {/* Optional Placeholder Block */}
+  <div className="hidden lg:block w-1/2">
+    <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
+      <img
+        src="/api/placeholder/600/400"
+        alt="Code editor showing colorful syntax highlighting"
+        className="w-full h-auto"
+      />
+    </div>
+  </div>
+</div>
 
       {/* Demo Video Section */}
-      <section id="demo" className="container mx-auto px-6 py-20">
+      {/* filepath: c:\Users\vinit\Downloads\TalkToCode\src\components\homepage\Homepage.tsx */}
+      <section id="how" className="container mx-auto px-6 py-20">
   <div className="bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
     <div className="aspect-video bg-slate-900">
       <iframe
@@ -183,8 +270,8 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
       {/* Features Section */}
       <div className="py-16 px-8" id="features">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-blue-400 mb-4">Supercharge Your Development</h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-blue-900 mb-4">Supercharge Your Development</h2>
+          <p className="text-xl text-gray-900 max-w-2xl mx-auto">
           Powerful Features to Enhance Your Workflow
           </p>
         </div>
@@ -196,47 +283,24 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
       </div>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-16">Meet Our Team</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-gray-900 p-6 rounded-lg text-center">
-            <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
-              alt="David Chen"
-              className="w-16 h-16 rounded-full mx-auto mb-4"
-            />
-            <h3 className="text-xl font-bold mb-2">Aryan Mittal</h3>
-            <p className="text-gray-400 text-sm mb-4">Tech Lead</p>
-            <p className="text-gray-300">
-              "VoiceCode has completely changed how I work. I can code faster and with less strain on my hands."
-            </p>
-          </div>
-          <div className="bg-gray-900 p-6 rounded-lg text-center">
-            <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
-              alt="Sarah Miller"
-              className="w-16 h-16 rounded-full mx-auto mb-4"
-            />
-            <h3 className="text-xl font-bold mb-2">Vinit Kumar Arora</h3>
-            <p className="text-gray-400 text-sm mb-4">Tech Lead</p>
-            <p className="text-gray-300">
-              "The accuracy is impressive. It understands complex commands and rarely makes mistakes."
-            </p>
-          </div>
-          <div className="bg-gray-900 p-6 rounded-lg text-center">
-            <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
-              alt="Tom Wilson"
-              className="w-16 h-16 rounded-full mx-auto mb-4"
-            />
-            <h3 className="text-xl font-bold mb-2">Vidhan Gupta</h3>
-            <p className="text-gray-400 text-sm mb-4">Tech Lead</p>
-            <p className="text-gray-300">
-              "Perfect for pair programming sessions. The whole team can follow along easily."
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* filepath: c:\Users\vinit\Downloads\TalkToCode\src\components\homepage\Homepage.tsx */}
+<section id="docs" className="container mx-auto px-6 py-20">
+  <h2 className="text-4xl font-bold text-center mb-16">Meet Our Team</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    {teamMembers.map((member, index) => (
+      <div key={index} className="bg-gray-900 p-6 rounded-lg text-center">
+        <img
+          src={member.profilePhoto}
+          alt={member.name}
+          className="w-16 h-16 rounded-full mx-auto mb-4"
+        />
+        <h3 className="text-xl font-bold mb-2 text-white">{member.name}</h3>
+        <p className="text-gray-400 text-sm mb-4">{member.designation}</p>
+        <p className="text-gray-300">{member.bio}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="bg-slate-900 py-12">
@@ -245,7 +309,7 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Mic className="w-6 h-6 text-blue-400" />
-                <span className="font-bold">VoxIDE</span>
+                <span className="font-bold">TalkToCode</span>
               </div>
               <p className="text-gray-400">Transform your coding experience with the power of voice.</p>
             </div>
@@ -277,7 +341,7 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 VoxIDE. All rights reserved.</p>
+            <p>&copy; 2025 TalkToCode. All rights reserved.</p>
           </div>
         </div>
       </footer>
