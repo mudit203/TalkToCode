@@ -20,11 +20,7 @@ const port = process.env.PORT || 3001;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 // Endpoint to fetch file contents
-app.get('/', (req, res) => {
-   return res.status(200).json({
-    message:"i am from banckend"
-   });
-});
+
 app.get('/api/file', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const filePath = req.query.path;

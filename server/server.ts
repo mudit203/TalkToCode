@@ -20,7 +20,9 @@ async function fileExists(filePath: string): Promise<boolean> {
         return false;
     }
 }
-
+app.get('/', (req: Request, res: Response): void => {
+    res.send('Hello from backend');
+});
 // Endpoint to fetch file contents
 app.get('/api/file', async (req: Request, res: Response):Promise<void> => {
     try {
