@@ -69,7 +69,7 @@ const fetchCodeDeclaration: FunctionDeclaration = {
   },
 };
 
-const API_BASE_URL = 'https://talktocode.onrender.com';
+const API_BASE_URL = 'http://localhost:3001/api';
 
 async function fetchFileContent(filePath: string): Promise<string> {
   const response = await fetch(`${API_BASE_URL}/file?path=${encodeURIComponent(filePath)}`);
