@@ -35,7 +35,9 @@ app.get('/api/file', (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(500).json({ error: 'Failed to read file' });
     }
 }));
-// Endpoint to modify file contents
+app.get('/', (req, res) => {
+    res.send('I am from backend');
+});
 app.post('/api/file', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { filePath, content } = req.body;
